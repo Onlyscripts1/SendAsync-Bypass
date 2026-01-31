@@ -1,0 +1,19 @@
+local tcs = game:GetService("TextChatService")
+local cl = tcs:WaitForChild("TextChannels"):WaitForChild("RBXGeneral")
+local bypass = false
+local t;
+tcs.OnIncomingMessage = function(a,b)
+if a.TextSource.Name == game.Players.LocalPlayer.Name then
+if bypass then
+bypass = false
+return
+end
+bypass = true
+t = a.Text
+a.Text = ""
+a.TextSource.CanSend = true
+cl:SendAsync(tostring(t))
+print("done")
+tcs.OnIncomingMessage = nil
+end
+end

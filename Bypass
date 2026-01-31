@@ -1,3 +1,5 @@
+-- Credit me (feariosz0) and donald trump plzlpslspl
+
 local tcs = game:GetService("TextChatService")
 local cl = tcs:WaitForChild("TextChannels"):WaitForChild("RBXGeneral")
 local bypass = false

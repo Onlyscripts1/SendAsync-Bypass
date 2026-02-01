@@ -2,8 +2,21 @@
 
 local tcs = game:GetService("TextChatService")
 local cl = tcs:WaitForChild("TextChannels"):WaitForChild("RBXGeneral")
+local ce = game:GetService("CoreGui")
+local txt;
+pcall(function()
+if ce:FindFirstChild("ExperienceChat") then
+txt = ce.ExperienceChat.appLayout.chatInputBar.Background.Container.TextContainer.TextBoxContainer.TextBox
+elseif gui:FindFirstChild("Chat") and gui.Chat.Frame:FindFirstChild("ChatBar") then
+txt = gui.Chat.Frame.ChatBar.TextBox
+else
+warn("This game may not work.")
+end
+end)
 local bypass = false
 local t;
+txt.FocusLost:Connect(function(func)
+if func and txt.Text ~= "" then
 tcs.OnIncomingMessage = function(a,b)
 if a.TextSource.Name == game.Players.LocalPlayer.Name then
 if bypass then
@@ -19,3 +32,5 @@ print("done")
 tcs.OnIncomingMessage = nil
 end
 end
+end
+end)
